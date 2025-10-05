@@ -36,7 +36,7 @@ export const StarEffect = () => {
   }, []);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-50">
+    <div className="pointer-events-none fixed inset-0 z-[9999]">
       {stars.map((star) => (
         <img
           key={star.id}
