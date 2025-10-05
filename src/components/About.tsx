@@ -1,17 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import profileImg from '@/assets/Red and Yellow Bold Modern Creative Content Creator Portfolio Presentation (1).png';
-import starGif from '@/assets/star.gif';
-
-interface Star {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  layer: number;
-}
+import profileImg from '@/assets/profile.png';
 export const About = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [stars, setStars] = useState<Star[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -26,57 +16,14 @@ export const About = () => {
     }
     return () => observer.disconnect();
   }, []);
-
-  const handleProfileClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    const layers = 4;
-    const starsPerLayer = 6;
-
-    for (let layer = 0; layer < layers; layer++) {
-      const radius = 100 + (layer * 60);
-
-      for (let i = 0; i < starsPerLayer; i++) {
-        const angle = (i / starsPerLayer) * Math.PI * 2 + (layer * 0.3);
-        const x = centerX + Math.cos(angle) * radius;
-        const y = centerY + Math.sin(angle) * radius;
-        const size = Math.random() * 40 + 50 - (layer * 8);
-
-        const newStar: Star = {
-          id: Date.now() + layer * 100 + i,
-          x,
-          y: y + window.scrollY,
-          size,
-          layer,
-        };
-
-        setTimeout(() => {
-          setStars((prev) => [...prev, newStar]);
-
-          setTimeout(() => {
-            setStars((prev) => prev.filter((star) => star.id !== newStar.id));
-          }, 2500);
-        }, layer * 100 + i * 30);
-      }
-    }
-  };
   return <section ref={sectionRef} className="py-24 px-4 md:px-8 bg-card">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className={`transition-all duration-1000 ${isVisible ? 'slide-in-left' : 'opacity-0 -translate-x-20'}`}>
             <div className="relative">
-              <div
-                onClick={handleProfileClick}
-                className="cursor-pointer animate-wiggle hover:scale-105 transition-transform duration-300 relative z-10"
-              >
-                <img
-                  src={profileImg}
-                  alt="Tran Ngoc Minh Han"
-                  className="rounded-2xl shadow-2xl w-full object-cover"
-                />
-              </div>
+              
+              
+              <img src={profileImg} alt="Tran Ngoc Minh Han" className="relative rounded-2xl shadow-2xl w-full" />
             </div>
           </div>
 
@@ -114,25 +61,6 @@ export const About = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="pointer-events-none fixed inset-0 z-0">
-        {stars.map((star) => (
-          <img
-            key={star.id}
-            src={starGif}
-            alt=""
-            className="absolute animate-ping"
-            style={{
-              left: star.x - star.size / 2,
-              top: star.y - star.size / 2,
-              width: star.size,
-              height: star.size,
-              opacity: 0.7 - (star.layer * 0.1),
-              animationDuration: '2.5s',
-            }}
-          />
-        ))}
       </div>
     </section>;
 };

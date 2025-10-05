@@ -32,7 +32,7 @@ export const Hero = () => {
           <p className="text-2xl md:text-4xl text-muted-foreground font-light tracking-wider">
             graphic designer / illustrator
           </p>
-
+          
           <div className="mt-12 flex justify-center gap-4">
             <div className="w-20 h-1 bg-accent rounded-full" />
             <div className="w-20 h-1 bg-secondary rounded-full" />
@@ -57,9 +57,9 @@ export const Hero = () => {
 
       {showAnimateGif && (
         <div className="absolute bottom-20 right-40 animate-fade-in">
-          <img
-            src={characterAnimate}
-            alt="Animated character"
+          <img 
+            src={characterAnimate} 
+            alt="Animated character" 
             className="w-[7cm] h-auto"
           />
         </div>
