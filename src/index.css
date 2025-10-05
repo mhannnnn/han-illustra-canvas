@@ -163,16 +163,16 @@ All colors MUST be HSL.
     }
   }
 
-  @keyframes walk {
-    0%, 100% { 
-      transform: translateX(0) rotate(0deg); 
+  @keyframes walkLeftToRight {
+    0% { 
+      transform: translateX(100vw) scaleX(-1);
     }
-    50% { 
-      transform: translateX(10px) rotate(2deg); 
+    100% { 
+      transform: translateX(-200px) scaleX(-1);
     }
   }
 
   .animate-walk {
-    animation: walk 3s ease-in-out infinite;
+    animation: walkLeftToRight 15s linear infinite;
   }
 }

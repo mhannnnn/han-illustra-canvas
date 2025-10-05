@@ -47,11 +47,11 @@ export const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-20 right-20 cursor-pointer" onClick={handleCharacterClick}>
+      <div className="absolute bottom-20 left-0 cursor-pointer" onClick={handleCharacterClick}>
         <img 
           src={characterWalk} 
           alt="Walking character" 
-          className="w-[7cm] h-auto animate-walk"
+          className="w-[7cm] h-auto animate-walk mix-blend-multiply"
         />
       </div>
 
