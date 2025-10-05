@@ -1,40 +1,29 @@
 import { useEffect, useRef, useState } from 'react';
 import profileImg from '@/assets/profile.png';
-
 export const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+      }
+    }, {
+      threshold: 0.2
+    });
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-
     return () => observer.disconnect();
   }, []);
-
-  return (
-    <section id="about" ref={sectionRef} className="py-24 px-4 md:px-8 bg-card">
+  return <section ref={sectionRef} className="py-24 px-4 md:px-8 bg-card">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className={`transition-all duration-1000 ${isVisible ? 'slide-in-left' : 'opacity-0 -translate-x-20'}`}>
             <div className="relative">
-              <div className="absolute -inset-4 bg-accent/20 rounded-3xl rotate-3" />
-              <div className="absolute -inset-4 bg-secondary/20 rounded-3xl -rotate-3" />
-              <img
-                src={profileImg}
-                alt="Tran Ngoc Minh Han"
-                className="relative rounded-2xl shadow-2xl w-full"
-              />
+              
+              
+              <img src={profileImg} alt="Tran Ngoc Minh Han" className="relative rounded-2xl shadow-2xl w-full" />
             </div>
           </div>
 
@@ -73,6 +62,5 @@ export const About = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
