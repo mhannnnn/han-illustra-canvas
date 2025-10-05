@@ -24,7 +24,7 @@ export const Contact = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 px-4 md:px-8 bg-card">
+    <section id="contact" ref={sectionRef} className="py-24 px-4 md:px-8 bg-card">
       <div className="max-w-4xl mx-auto text-center">
         <div className={`transition-all duration-1000 ${isVisible ? 'slide-in-up' : 'opacity-0 translate-y-20'}`}>
           <h2 className="text-5xl md:text-6xl font-bold mb-6 text-primary">

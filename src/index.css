@@ -162,4 +162,17 @@ All colors MUST be HSL.
       transform: scale(1);
     }
   }
+
+  @keyframes walk {
+    0%, 100% { 
+      transform: translateX(0) rotate(0deg); 
+    }
+    50% { 
+      transform: translateX(10px) rotate(2deg); 
+    }
+  }
+
+  .animate-walk {
+    animation: walk 3s ease-in-out infinite;
+  }
 }

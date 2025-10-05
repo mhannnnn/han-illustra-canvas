@@ -23,7 +23,7 @@ export const About = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 px-4 md:px-8 bg-card">
+    <section id="about" ref={sectionRef} className="py-24 px-4 md:px-8 bg-card">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className={`transition-all duration-1000 ${isVisible ? 'slide-in-left' : 'opacity-0 -translate-x-20'}`}>

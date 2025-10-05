@@ -1,4 +1,5 @@
 import { StarEffect } from '@/components/StarEffect';
+import { Navigation } from '@/components/Navigation';
 import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
 import { Portfolio } from '@/components/Portfolio';
@@ -8,6 +9,7 @@ const Index = () => {
   return (
     <div className="relative">
       <StarEffect />
+      <Navigation />
       <Hero />
       <About />
       <Portfolio />

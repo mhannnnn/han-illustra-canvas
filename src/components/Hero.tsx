@@ -1,14 +1,22 @@
 import { useEffect, useState } from 'react';
+import characterWalk from '@/assets/character-walk.gif';
+import characterAnimate from '@/assets/character-animate.gif';
 
 export const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showAnimateGif, setShowAnimateGif] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  const handleCharacterClick = () => {
+    setShowAnimateGif(true);
+    setTimeout(() => setShowAnimateGif(false), 3000);
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-card to-muted">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-card to-muted">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-64 h-64 bg-accent rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-primary rounded-full blur-3xl" />
@@ -38,6 +46,24 @@ export const Hero = () => {
           <div className="w-1 h-3 bg-primary rounded-full" />
         </div>
       </div>
+
+      <div className="absolute bottom-20 right-20 cursor-pointer" onClick={handleCharacterClick}>
+        <img 
+          src={characterWalk} 
+          alt="Walking character" 
+          className="w-[7cm] h-auto animate-walk"
+        />
+      </div>
+
+      {showAnimateGif && (
+        <div className="absolute bottom-20 right-40 animate-fade-in">
+          <img 
+            src={characterAnimate} 
+            alt="Animated character" 
+            className="w-[7cm] h-auto"
+          />
+        </div>
+      )}
     </section>
   );
 };

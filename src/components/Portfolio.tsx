@@ -26,6 +26,7 @@ const posters = [
 
 export const Portfolio = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -45,8 +46,17 @@ export const Portfolio = () => {
     return () => observer.disconnect();
   }, []);
 
+  const handleImageClick = (src: string) => {
+    setFullScreenImage(src);
+  };
+
+  const handleImageDoubleClick = () => {
+    setFullScreenImage(null);
+  };
+
   return (
-    <section ref={sectionRef} className="py-24 px-4 md:px-8 bg-background">
+    <>
+      <section id="portfolio" ref={sectionRef} className="py-24 px-4 md:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
         <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'slide-in-up' : 'opacity-0 translate-y-20'}`}>
           <h2 className="text-5xl md:text-6xl font-bold mb-4 text-primary">
@@ -73,7 +83,8 @@ export const Portfolio = () => {
               {clubDesigns.map((design, index) => (
                 <div
                   key={index}
-                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
+                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 cursor-pointer"
+                  onClick={() => handleImageClick(design.src)}
                 >
                   <img
                     src={design.src}
@@ -95,7 +106,8 @@ export const Portfolio = () => {
               {artworks.map((artwork, index) => (
                 <div
                   key={index}
-                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
+                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 cursor-pointer"
+                  onClick={() => handleImageClick(artwork.src)}
                 >
                   <img
                     src={artwork.src}
@@ -117,7 +129,8 @@ export const Portfolio = () => {
               {posters.map((poster, index) => (
                 <div
                   key={index}
-                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
+                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 cursor-pointer"
+                  onClick={() => handleImageClick(poster.src)}
                 >
                   <img
                     src={poster.src}
@@ -136,5 +149,20 @@ export const Portfolio = () => {
         </Tabs>
       </div>
     </section>
+
+    {fullScreenImage && (
+      <div
+        className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-4"
+        onDoubleClick={handleImageDoubleClick}
+      >
+        <img
+          src={fullScreenImage}
+          alt="Full screen view"
+          className="max-w-full max-h-full object-contain cursor-pointer"
+          onDoubleClick={handleImageDoubleClick}
+        />
+      </div>
+    )}
+    </>
   );
 };
