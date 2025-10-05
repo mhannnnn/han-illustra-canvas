@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import starGif from '@/assets/star.gif';
+import clickSound from '@/assets/click-sound.mp3';
 
 interface Star {
   id: number;
@@ -12,7 +13,13 @@ export const StarEffect = () => {
   const [stars, setStars] = useState<Star[]>([]);
 
   useEffect(() => {
+    const audio = new Audio(clickSound);
+    
     const handleClick = (e: MouseEvent) => {
+      // Play click sound
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+      
       // Random size between 1-5 cm (approximately 38-190 pixels)
       const size = Math.random() * 152 + 38;
       
